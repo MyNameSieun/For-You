@@ -11,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
   }
   a{text-decoration:none;}
   a:visited { color:black; }
-  a:hover { color:red; }
 `;
 
 export default GlobalStyle;
