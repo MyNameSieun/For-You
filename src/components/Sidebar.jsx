@@ -43,7 +43,6 @@ const ChileFont = styled(Link)`
     color: #ffbbf6;
   }
 `;
-
 function Sidebar() {
   const navigate = useNavigate();
   return (
