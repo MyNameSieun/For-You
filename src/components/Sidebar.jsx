@@ -7,7 +7,7 @@ import homeImg from "assets/images/home.png";
 import letterImg from "assets/images/letter.png";
 
 const SidebarContainer = styled.div`
-  width: 252px;
+  width: 300px;
   height: 100vh;
   background-color: #ffffff;
   display: flex;
@@ -50,7 +50,6 @@ function Sidebar() {
       <SidebarContainer>
         <ul>
           <li>
-            {" "}
             <LogoImage src={logo} alt="React" />
             <LogoFont to="/">For You</LogoFont>
           </li>

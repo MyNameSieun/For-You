@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
  ${reset}
   body {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     background-color:#F5F5F5;
     height:100vh;
   }
