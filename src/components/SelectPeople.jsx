@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components"; // import(retrun에 css치고 tap누르면 자동 import)
 
 const SelectContainer = styled.div`
-  width: 300px;
+  width: 330px;
+  height: 830px;
   background-color: #ffffff;
   display: flex;
   position: relative;

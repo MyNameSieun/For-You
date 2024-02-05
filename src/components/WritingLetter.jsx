@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 const Form = styled.form`
+  width: 1160px;
   height: 369px;
   background-color: #ffffff;
   position: relative;
   margin: 40px 0 0 30px;
   border-radius: 13px;
   box-shadow: 0 2px 10px -7px rgba(0, 0, 0, 1);
+  position: relative;
 `;
 const H1 = styled.div`
   margin: 30px;
@@ -18,13 +20,16 @@ const H1 = styled.div`
 const Input = styled.div`
   display: flex;
   margin: 0px 0 0 30px;
-
+  & label {
+    margin-top: 4px;
+  }
   & input {
     margin-bottom: 30px;
     width: 300px;
     height: 35px;
     border: 1px solid #bfbfbf;
     border-radius: 8px;
+    margin-left: 13px;
   }
   & textarea {
     resize: none;
@@ -32,10 +37,21 @@ const Input = styled.div`
     height: 126px;
     border: 1px solid #bfbfbf;
     border-radius: 8px;
+    margin-left: 29px;
   }
 `;
 const LetterBtn = styled.button`
-  display: flex;
+  position: absolute;
+  right: 80px;
+  bottom: 23px;
+  background-color: #2345f4;
+  font-weight: bold;
+  color: white;
+  height: 40px;
+  width: 90px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
 `;
 
 function WritingLetter({ letters, setLetters }) {

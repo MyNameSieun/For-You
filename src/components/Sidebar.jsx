@@ -9,67 +9,73 @@ import letterImg from "assets/images/letter.png";
 const SidebarContainer = styled.div`
   width: 300px;
   height: 100vh;
+  box-shadow: 0 2px 10px -7px rgba(0, 0, 0, 1);
   background-color: #ffffff;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 `;
-const LogoImage = styled.img`
-  width: 32px;
-  margin-top: 23px;
-  margin-right: 10px;
-`;
-const HomeImg = styled.img`
-  width: 30px;
-  margin-top: 50px;
-  margin-right: 10px;
-`;
-const LetterImg = styled.img`
-  width: 30px;
-  margin-top: 30px;
-  margin-right: 10px;
-`;
 
+const FlowCard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 40px;
+  &:hover {
+    background-color: #343434;
+    border-radius: 8px;
+  }
+`;
+const ImageSize = styled.img`
+  width: 30px;
+  margin-right: 10px;
+`;
+const Logo = styled.div`
+  margin-top: 60px;
+`;
 const LogoFont = styled(Link)`
   font-weight: bold;
   font-size: 24px;
   text-decoration: none;
 `;
-
+const Home = styled(FlowCard)`
+  margin-top: 83px;
+`;
+const Writing = styled(FlowCard)`
+  margin-top: 23px;
+`;
 const ChileFont = styled(Link)`
   font-size: 18px;
-
-  &:hover {
-    color: #ffbbf6;
-  }
 `;
+
 function Sidebar() {
   const navigate = useNavigate();
+
   return (
     <>
       <SidebarContainer>
-        <ul>
-          <li>
-            <LogoImage src={logo} alt="React" />
-            <LogoFont to="/">For You</LogoFont>
-          </li>
-          <li>
-            <HomeImg src={homeImg} alt="homeImage" />
-            <ChileFont to="/">Home</ChileFont>
-          </li>
-          <li>
-            <LetterImg src={letterImg} alt="letterImage" />
-            <ChileFont to="/writing">
-              <span
-                onClick={() => {
-                  navigate("/writing");
-                }}
-              >
-                편지쓰기
-              </span>
-            </ChileFont>
-          </li>
-        </ul>
+        <Logo>
+          <ImageSize src={logo} alt="React" />
+          <LogoFont to="/">For You</LogoFont>
+        </Logo>
+        <Home>
+          <ImageSize src={homeImg} alt="homeImage" />
+          <ChileFont to="/">Home</ChileFont>
+        </Home>
+        <Writing>
+          <ImageSize src={letterImg} alt="letterImage" />
+          <ChileFont to="/writing">
+            <span
+              onClick={() => {
+                navigate("/writing");
+              }}
+            >
+              편지쓰기
+            </span>
+          </ChileFont>
+        </Writing>
       </SidebarContainer>
     </>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "pages/Home";
 import Writing from "pages/Writing";
+import Detail from "components/Detail";
 
 // (2) Router 라는 함수를 만들고 아래와 같이 작성하자.
 //BrowserRouter를 Router로 감싸는 이유는,
@@ -12,7 +13,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="writing/:id" element={<Writing />} />
+        <Route path="writing/" element={<Writing />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

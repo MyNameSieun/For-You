@@ -3,7 +3,7 @@ import Sidebar from "components/Sidebar";
 import SelectPeople from "components/SelectPeople";
 import WritingLetter from "components/WritingLetter";
 import ListLetter from "components/ListLetter";
-import styled from "styled-components"; // import
+import styled from "styled-components";
 import fakeData from "fakeData.json";
 
 const Container = styled.div`
