@@ -20,7 +20,10 @@ const Router = () => {
           path="writing/"
           element={<Writing letters={letters} setLetters={setLetters} />}
         />
-        <Route path="/detail/:id" element={<Detail letters={letters} />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail letters={letters} setLetters={setLetters} />}
+        />
       </Routes>
     </BrowserRouter>
   );

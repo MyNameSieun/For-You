@@ -16,7 +16,7 @@ const ListLetterContainer = styled.div`
   overflow-y: scroll;
 `;
 const LetterCard = styled.div`
-  height: 125px;
+  height: 65px;
   margin: 30px 30px 0 30px;
 `;
 const UserInfo = styled.div`
@@ -28,7 +28,7 @@ const NickName = styled.div`
   font-size: 17px;
   font-weight: bold;
 `;
-const Date = styled.div`
+const CreatedAt = styled.div`
   font-size: 13px;
   color: #bebebe;
   margin-left: 10px;
@@ -47,26 +47,7 @@ const Hr = styled.hr`
   margin-top: 16px;
   height: 0.1px;
   background-color: #cccccc;
-`;
-const Button = styled.button`
-  margin-top: 20px;
-  background-color: #1e1e1e;
-  color: white;
-  border-radius: 8px;
-  height: 30px;
-  width: 60px;
-  margin-right: 5px;
-  cursor: pointer;
-`;
-const EditButton = styled(Button)`
-  color: #2c2c2c;
-  background-color: white;
-  font-weight: bold;
-`;
-
-const DeleteButton = styled(Button)`
-  background-color: #2c2c2c;
-  font-weight: bold;
+  border: 0px;
 `;
 
 const FlexRow = styled.div`
@@ -90,13 +71,11 @@ function ListLetter({ activePeople, letters }) {
                 <div>
                   <FlexRow>
                     <NickName>{letter.nickname}</NickName>
-                    <Date>{letter.createdAt}</Date>
+                    <CreatedAt>{letter.createdAt}</CreatedAt>
                   </FlexRow>
                   <Content>{letter.content}</Content>
                 </div>
               </UserInfo>
-              <EditButton>수정</EditButton>
-              <DeleteButton>삭제</DeleteButton>
               <Hr />
             </LetterCard>
           );
