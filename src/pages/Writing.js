@@ -4,7 +4,6 @@ import SelectPeople from "components/SelectPeople";
 import WritingLetter from "components/WritingLetter";
 import ListLetter from "components/ListLetter";
 import styled from "styled-components";
-import fakeData from "fakeData.json";
 
 const Container = styled.div`
   display: flex;
@@ -16,10 +15,13 @@ const ElementBox = styled.div`
   flex-direction: column;
   width: 67%;
 `;
+function add(a, b) {
+  return a + b;
+}
+add(1, 2);
 
-function Writing() {
+function Writing({ letters, setLetters }) {
   const [activePeople, setActivePeople] = useState("권혁우 튜터님");
-  const [letters, setLetters] = useState(fakeData);
   return (
     <Container>
       <Sidebar></Sidebar>
@@ -28,7 +30,11 @@ function Writing() {
         setActivePeople={setActivePeople}
       />
       <ElementBox>
-        <WritingLetter letters={letters} setLetters={setLetters} />
+        <WritingLetter
+          letters={letters}
+          setLetters={setLetters}
+          activePeople={activePeople}
+        />
         <ListLetter activePeople={activePeople} letters={letters} />
       </ElementBox>
     </Container>

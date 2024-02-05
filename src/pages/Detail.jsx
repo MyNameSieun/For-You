@@ -7,31 +7,27 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f5f5f5;
 `;
 const DetailContainer = styled.div`
   width: 300px;
   height: 300px;
-  background-color: black;
+  background-color: white;
 `;
-const UserImage = styled.img`
-  background-color: black;
-`;
+const UserImage = styled.img``;
 const NickName = styled.div``;
 const Date = styled.div``;
 const Content = styled.div``;
 
-function Detail({ letter }) {
+function Detail({ letters }) {
   const { id } = useParams();
-  const { avatar, nickname, createdAt } = letter.find(
-    (letter) => letter.id === id
-  );
+  const { nickname, Content } = letters.find((letter) => letter.id === id);
   return (
     <Container>
       <DetailContainer>
         <UserImage></UserImage>
+        <NickName>닉네임 : {nickname}</NickName>
         <NickName>{nickname}</NickName>
-        <Date>{id.createdAt}</Date>
-        <Content>{id.createdAt}</Content>{" "}
       </DetailContainer>
     </Container>
   );

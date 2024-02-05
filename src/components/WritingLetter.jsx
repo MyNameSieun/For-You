@@ -54,7 +54,7 @@ const LetterBtn = styled.button`
   cursor: pointer;
 `;
 
-function WritingLetter({ letters, setLetters }) {
+function WritingLetter({ letters, setLetters, activePeople }) {
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
 
@@ -65,8 +65,19 @@ function WritingLetter({ letters, setLetters }) {
       nickname: nickName,
       avatar: null,
       content,
+      writedTo: activePeople,
       createdAt: new Date().toISOString(),
     };
+
+    if (nickName === "") {
+      alert("닉네임을 입력해주세요.");
+      return;
+    }
+    if (content === "") {
+      alert("내용을 입력해주세요.");
+      return;
+    }
+
     setLetters([...letters, newLetter]);
     setNickName("");
     setContent("");

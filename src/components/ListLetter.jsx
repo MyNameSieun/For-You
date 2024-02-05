@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; //import
-import userImage from "../assets/images/userImage.png";
+import UserImage from "components/common/UserImage";
 
 const ListLetterContainer = styled.div`
   height: 420px;
@@ -23,19 +23,7 @@ const UserInfo = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const UserImage = styled.figure`
-  font-size: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-`;
+
 const NickName = styled.div`
   font-size: 17px;
   font-weight: bold;
@@ -92,17 +80,13 @@ function ListLetter({ activePeople, letters }) {
     <ListLetterContainer>
       {letters
         .filter(function (letter) {
-          console.log("activePeople", activePeople);
-          console.log("letter.writedTo", letter.writedTo);
           return letter.writedTo === activePeople;
         })
         .map(function (letter) {
           return (
             <LetterCard key={letter.id}>
               <UserInfo onClick={() => navigate(`/detail/${letter.id}`)}>
-                <UserImage>
-                  <img src={letter.avatar ?? userImage} alt="user image" />
-                </UserImage>
+                <UserImage src={letter.avatar} />
                 <div>
                   <FlexRow>
                     <NickName>{letter.nickname}</NickName>
