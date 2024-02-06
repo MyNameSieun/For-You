@@ -2,6 +2,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserImage from "components/common/UserImage";
+import { useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -26,10 +27,12 @@ const NickName = styled.div`
   font-size: 17px;
   font-weight: bold;
 `;
-const Content = styled.div`
+const Content = styled.p`
   color: #7b7b7b;
-  width: 300px;
-  margin: 13px 0 0 25px;
+  width: 440px;
+  height: 600px;
+  overflow-y: scroll;
+  margin: 3px 0 0 25px;
 `;
 const CreatedAt = styled.div`
   font-size: 13px;
@@ -39,14 +42,23 @@ const CreatedAt = styled.div`
 `;
 
 const Button = styled.button`
-  margin-top: 20px;
+  margin-right: 5px;
+  ${(props) => (props.withMarginRight ? "margin-right: 33px;" : "")}
+  margin-bottom: 20px;
   background-color: #1e1e1e;
   color: white;
   border-radius: 8px;
-  height: 30px;
-  width: 60px;
-  margin-right: 5px;
+  height: 33px;
+  width: 65px;
+  font-size: 12px;
   cursor: pointer;
+`;
+const BtnsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
 `;
 const BackClick = styled.div`
   cursor: pointer;
@@ -56,22 +68,6 @@ const BackClick = styled.div`
   top: 9px;
 `;
 
-const EditButton = styled(Button)`
-  color: #2c2c2c;
-  background-color: white;
-  font-weight: bold;
-  position: absolute;
-  right: 77px;
-  bottom: 19px;
-`;
-
-const DeleteButton = styled(Button)`
-  background-color: #2c2c2c;
-  font-weight: bold;
-  position: absolute;
-  right: 14px;
-  bottom: 19px;
-`;
 const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -85,38 +81,81 @@ const Hr = styled.hr`
   height: 1px;
   background-color: #cccccc;
 `;
+const Textarea = styled.textarea`
+  color: #7b7b7b;
+  width: 440px;
+  height: 600px;
+  overflow-y: scroll;
+  margin: 3px 0 0 25px;
+  resize: none;
+`;
 
 function Detail({ letters, setLetters }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingText, setEditingText] = useState("");
   const navigate = useNavigate();
-
   const { id } = useParams();
   const { nickname, content, createdAt } = letters.find(
-    //?
     (letter) => letter.id === id
   );
 
-  // 삭제 기능
   const handleRemoveBtn = (id) => {
     const answer = window.confirm("정말로 삭제하시겠습니까?");
     if (!answer) return;
     const Letters = letters.filter((letter) => letter.id !== id);
-    navigate(-1);
+    navigate("/writing"); // 이 부분 수정
     setLetters(Letters);
   };
 
+  const onEditDone = () => {
+    if (!editingText) return alert("수정사항이 없습니다.");
+    const newLetters = letters.map((letter) => {
+      if (letter.id === id) {
+        return { ...letter, content: editingText };
+      }
+
+      return letter;
+    });
+
+    setLetters(newLetters);
+    setIsEditing(false);
+    setEditingText("");
+  };
   return (
     <Container>
       <DetailContainer>
-        <BackClick onClick={() => navigate(-1)}>x</BackClick>{" "}
+        <BackClick onClick={() => navigate(-1)}>x</BackClick>
         <FlexRow>
           <UserImage src={letters.avatar} />
           <NickName>{nickname}</NickName>
           <CreatedAt>{createdAt}</CreatedAt>
         </FlexRow>
         <Hr />
-        <Content>{content}</Content>
-        <EditButton>수정</EditButton>
-        <DeleteButton onClick={() => handleRemoveBtn(id)}>삭제</DeleteButton>
+        {isEditing ? (
+          <>
+            <Textarea
+              autoFocus
+              defaultValue={content}
+              onChange={(e) => setEditingText(e.target.value)}
+            />
+            <BtnsWrapper>
+              <Button onClick={onEditDone}>수정완료</Button>
+              <Button withMarginRight onClick={() => setIsEditing(false)}>
+                취소
+              </Button>
+            </BtnsWrapper>
+          </>
+        ) : (
+          <>
+            <Content>{content}</Content>
+            <BtnsWrapper>
+              <Button onClick={() => setIsEditing(true)}>수정</Button>
+              <Button withMarginRight onClick={() => handleRemoveBtn(id)}>
+                삭제
+              </Button>
+            </BtnsWrapper>
+          </>
+        )}
       </DetailContainer>
     </Container>
   );
