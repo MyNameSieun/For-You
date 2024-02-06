@@ -2,7 +2,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserImage from "components/common/UserImage";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LetterContext } from "context/LetterContext";
 
 const Container = styled.div`
   display: flex;
@@ -90,7 +91,8 @@ const Textarea = styled.textarea`
   resize: none;
 `;
 
-function Detail({ letters, setLetters }) {
+function Detail() {
+  const { letters, setLetters } = useContext(LetterContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editingText, setEditingText] = useState("");
   const navigate = useNavigate();

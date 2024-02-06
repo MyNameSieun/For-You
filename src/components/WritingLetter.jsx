@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { LetterContext } from "context/LetterContext";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
@@ -54,7 +55,8 @@ const LetterBtn = styled.button`
   cursor: pointer;
 `;
 
-function WritingLetter({ letters, setLetters, activePeople }) {
+function WritingLetter({ setLetters, activePeople }) {
+  const { letters } = useContext(LetterContext);
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
 

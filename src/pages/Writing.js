@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Sidebar from "components/Sidebar";
 import SelectPeople from "components/SelectPeople";
 import WritingLetter from "components/WritingLetter";
 import ListLetter from "components/ListLetter";
 import styled from "styled-components";
+import { LetterContext } from "context/LetterContext";
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +21,8 @@ function add(a, b) {
 }
 add(1, 2);
 
-function Writing({ letters, setLetters }) {
+function Writing() {
+  const { letters, setLetters } = useContext(LetterContext);
   const [activePeople, setActivePeople] = useState("권혁우 튜터님");
   return (
     <Container>
@@ -30,11 +32,7 @@ function Writing({ letters, setLetters }) {
         setActivePeople={setActivePeople}
       />
       <ElementBox>
-        <WritingLetter
-          letters={letters}
-          setLetters={setLetters}
-          activePeople={activePeople}
-        />
+        <WritingLetter setLetters={setLetters} activePeople={activePeople} />
         <ListLetter activePeople={activePeople} letters={letters} />
       </ElementBox>
     </Container>
