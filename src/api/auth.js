@@ -27,14 +27,8 @@ export const register = async (data) => {
 export const login = async (data) => {
   const response = await authAxios.post(`/login`, data);
   const token = response.data.token;
-  localStorage.setItem(token);
+  localStorage.setItem('authToken', token);
   return response;
-};
-
-// 로그아웃?
-export const logout = async () => {
-  localStorage.removeItem('authToken');
-  return await authAxios.get('/logout');
 };
 
 // 회원정보 확인
