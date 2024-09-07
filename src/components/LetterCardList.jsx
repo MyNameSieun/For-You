@@ -20,9 +20,8 @@ const LetterCradList = ({ newLetterCardList, letters }) => {
                   <h2>{letter.title}</h2>
                   <h3>{letter.content}</h3>
                   <p>{letter.createdAt}</p>
-                  <StLetterHr />
                 </StLetterText>
-
+                <StLetterHr />
                 {isOpen(letter.id) && <LetterCardModal letter={letter} newLetterCardList={newLetterCardList} />}
               </StLetterCradItem>
             ))}
@@ -50,19 +49,25 @@ const StLetterCradItem = styled.li`
 const StLetterText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
+  display: -webkit-box; /* Flexbox를 사용하여 자식 요소를 정렬 */
+  -webkit-box-orient: vertical; /* 수직 방향으로 정렬 */
+  -webkit-line-clamp: 3; /* 표시할 줄 수 설정 */
+  overflow: hidden; /* 넘치는 내용 숨기기 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 생략부호로 표시 */
   & h2 {
     font-size: 1.1rem;
     font-weight: bold;
   }
 
   & h3 {
+    margin-top: 10px;
+    color: #888888;
   }
 
   & p {
     display: flex;
     justify-content: end;
+    color: #888888;
   }
 `;
 
