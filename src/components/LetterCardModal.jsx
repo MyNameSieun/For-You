@@ -29,7 +29,13 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
   // 편지 수정
   const handleEditButton = async (letterId) => {
     try {
-      await updateLetter(letterId, { title: editMode.title, content: editMode.content });
+      await updateLetter(letterId, {
+        title: editMode.title,
+        content: editMode.content,
+        avator: editMode.avator,
+        writedTo: editMode.writedTo,
+        createdAt: editMode.createdAt
+      });
       alert('수정이 완료되었습니다!');
       setEditMode(null);
       newLetterCardList();
