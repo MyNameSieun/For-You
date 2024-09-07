@@ -1,6 +1,6 @@
 import AddForm from 'components/AddForm';
 import AddTabs from 'components/AddTabs';
-import LetterCradList from 'components/LetterCradList';
+import LetterCardList from 'components/LetterCardList';
 import styled from 'styled-components';
 
 const HomePage = () => {
@@ -14,7 +14,7 @@ const HomePage = () => {
           <AddForm />
         </StAddFormBox>
         <StLetterCardListBox>
-          <LetterCradList />
+          <LetterCardList />
         </StLetterCardListBox>
       </StRight>
     </StHomeLayout>

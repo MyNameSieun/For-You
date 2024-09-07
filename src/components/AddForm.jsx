@@ -30,7 +30,7 @@ const AddForm = () => {
           <label htmlFor="content">내용: </label>
           <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
-        <button type="submit">작성하기</button>
+        <button type="submit">편지 등록</button>
       </form>
     </StAddFormContainer>
   );

@@ -1,4 +1,4 @@
-import { getProfile } from 'api/auth';
+import { getUser } from 'api/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await getProfile();
+        const response = await getUser();
         setUser(response.data.member);
       } catch (error) {
         setUser(null); // 인증 실패 시 사용자 정보 초기화
@@ -29,6 +29,4 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={{ user, setUser, isSignIn }}>{children}</AuthContext.Provider>;
 };
 
-// export default AuthContext;
-// const { user, login, logout, isSignIn } = useAuth(); 와 같이 사용 가능
 export const useAuth = () => useContext(AuthContext);
