@@ -38,18 +38,26 @@ const LetterCard = () => {
   };
 
   return (
-    <div>
+    <StLetterCardContainer>
       <StAddFormBox>
         <AddForm newLetterCardList={newLetterCardList} />
       </StAddFormBox>
       <StLetterCardListBox>
         <LetterCardList letters={letters} newLetterCardList={newLetterCardList} />
       </StLetterCardListBox>
-    </div>
+    </StLetterCardContainer>
   );
 };
 
 export default LetterCard;
+const StLetterCardContainer = styled.div`
+  width: 90%;
+
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const StAddFormBox = styled.div`
   background-color: #ffffff;
