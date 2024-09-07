@@ -3,8 +3,8 @@ import { useModal } from 'context/ModalContext';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export const LetterCardModal = ({ letter }) => {
-  const { isOpen, setIsOpen, openModal, closeModal } = useModal();
+export const LetterCardModal = ({ letter, newLetterCardList }) => {
+  const { closeModal } = useModal();
   const [editMode, setEditMode] = useState(null);
 
   // 편지 삭제
@@ -30,6 +30,8 @@ export const LetterCardModal = ({ letter }) => {
     try {
       await updateLetter(letterId, { title: editMode.title, content: editMode.content });
       alert('수정이 완료되었습니다!');
+      setEditMode(null);
+      newLetterCardList();
     } catch (error) {
       console.error(error);
     }

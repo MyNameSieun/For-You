@@ -1,6 +1,5 @@
-import AddForm from 'components/AddForm';
 import AddTabs from 'components/AddTabs';
-import LetterCardList from 'components/LetterCardList';
+import LetterCard from 'components/LetterCard';
 import styled from 'styled-components';
 
 const HomePage = () => {
@@ -10,12 +9,7 @@ const HomePage = () => {
         <AddTabs />
       </StAddTabsBox>
       <StRight>
-        <StAddFormBox>
-          <AddForm />
-        </StAddFormBox>
-        <StLetterCardListBox>
-          <LetterCardList />
-        </StLetterCardListBox>
+        <LetterCard />
       </StRight>
     </StHomeLayout>
   );
@@ -44,22 +38,4 @@ const StRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`;
-
-const StAddFormBox = styled.div`
-  background-color: #ffffff;
-  flex: 1;
-  padding: 20px;
-
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-`;
-
-const StLetterCardListBox = styled.div`
-  background-color: #ffffff;
-  flex: 1;
-  padding: 20px;
-
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;

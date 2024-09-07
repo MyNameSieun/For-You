@@ -2,7 +2,7 @@ import { createLetter } from 'api/letters';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const AddForm = () => {
+const AddForm = ({ newLetterCardList }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -13,6 +13,7 @@ const AddForm = () => {
       // 편지 작성
       await createLetter({ title, content });
       alert('편지 작성이 완료되었습니다.');
+      newLetterCardList();
     } catch (error) {
       console.error(error);
     }
