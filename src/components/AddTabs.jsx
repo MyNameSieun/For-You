@@ -8,7 +8,7 @@ const AddTabs = () => {
 
   return (
     <div>
-      <h2>누구에게 보내실 건가요?</h2>
+      <StAddTabsTitle>누구에게 보내실 건가요?</StAddTabsTitle>
       <StTabList>
         {characters.map((character, index) => (
           <StTabItem key={index} $isSelected={character === selected} onClick={() => setSelected(character)}>
@@ -22,16 +22,22 @@ const AddTabs = () => {
 
 export default AddTabs;
 
+const StAddTabsTitle = styled.h1`
+  font-weight: bold;
+  font-size: 17px;
+`;
+
 const StTabList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  margin-top: 30px;
 `;
 
 const StTabItem = styled.li`
-  padding: 15px;
+  display: flex;
+  justify-content: center;
+
+  padding: 25px;
   border-radius: 4px;
-  margin: 5px 0;
+  margin: 15px 0;
   cursor: pointer;
 
   ${(props) =>

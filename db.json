@@ -1,13 +1,29 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "letters": [
+    {
+      "id": "1",
+      "title": "title",
+      "content": "content"
+    },
+    {
+      "id": "2",
+      "title": "title2",
+      "content": "content2"
+    },
+    {
+      "id": "50ed",
+      "title": "456",
+      "content": "65"
+    },
+    {
+      "id": "be38",
+      "title": "456",
+      "content": "65"
+    },
+    {
+      "id": "6d63",
+      "title": "678",
+      "content": "678"
+    }
+  ]
 }

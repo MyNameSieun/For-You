@@ -21,6 +21,7 @@ export default Layout;
 const StLayout = styled.main`
   width: 100%;
   height: 100vh;
+  background-color: #f5f5f5;
 `;
 
 const StContainer = styled(CommonContainer)`
