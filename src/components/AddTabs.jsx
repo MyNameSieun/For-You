@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useSelected } from 'context/SelectedContext';
 import styled, { css } from 'styled-components';
 
 const AddTabs = () => {
+  const { selected, setSelected } = useSelected();
+
   const characters = ['토토로', '키키', '포뇨', '치히로', '소피', '가오나시'];
-  const [selected, setSelected] = useState('토토로');
 
   return (
     <div>
@@ -15,7 +16,6 @@ const AddTabs = () => {
           </StTabItem>
         ))}
       </StTabList>
-      <p>선택한 캐릭터: {selected}</p>
     </div>
   );
 };
