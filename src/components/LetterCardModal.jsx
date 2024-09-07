@@ -15,6 +15,7 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
         await deleteLetter(letter.id);
         alert('삭제가 완료되었습니다.');
         closeModal();
+        newLetterCardList();
       }
     } catch (error) {
       console.error(error);
@@ -56,6 +57,8 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
             <>
               <p>{letter.title}</p>
               <p>{letter.content}</p>
+              <p>{letter.createdAt}</p>
+
               <button onClick={handleDeleteButton}>삭제</button>
               <button onClick={() => handleEditMode(letter)}>수정</button>
             </>
