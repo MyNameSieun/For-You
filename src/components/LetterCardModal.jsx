@@ -48,25 +48,37 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
     <div>
       <StOverlay onClick={closeModal}>
         <StModalBox onClick={(e) => e.stopPropagation()}>
-          <button onClick={closeModal}>x</button>
+          <StModalClose onClick={closeModal}>x</StModalClose>
           {editMode ? (
             <>
-              <input value={editMode.title} onChange={(e) => setEditMode({ ...editMode, title: e.target.value })} />
-              <textarea
-                value={editMode.content}
-                onChange={(e) => setEditMode({ ...editMode, content: e.target.value })}
-              />
-              <button onClick={() => setEditMode(null)}>취소</button>
-              <button onClick={() => handleEditButton(letter.id)}>수정 완료</button>
+              <StModalText>
+                <StInput value={editMode.title} onChange={(e) => setEditMode({ ...editMode, title: e.target.value })} />
+                <StTextarea
+                  value={editMode.content}
+                  onChange={(e) => setEditMode({ ...editMode, content: e.target.value })}
+                />
+              </StModalText>
+              <StModalButtonBox>
+                <StModalButton onClick={() => setEditMode(null)} $buttonColor>
+                  취소
+                </StModalButton>
+                <StModalButton onClick={() => handleEditButton(letter.id)}>수정 완료</StModalButton>
+              </StModalButtonBox>
             </>
           ) : (
             <>
-              <p>{letter.title}</p>
-              <p>{letter.content}</p>
+              <StModalText>
+                <StModalTitle>{letter.title}</StModalTitle>
+                <StModalHr />
+                <StModalContent>{letter.content}</StModalContent>
+              </StModalText>
               <p>{letter.createdAt}</p>
-
-              <button onClick={handleDeleteButton}>삭제</button>
-              <button onClick={() => handleEditMode(letter)}>수정</button>
+              <StModalButtonBox>
+                <StModalButton onClick={handleDeleteButton} $buttonColor>
+                  삭제
+                </StModalButton>
+                <StModalButton onClick={() => handleEditMode(letter)}>수정</StModalButton>
+              </StModalButtonBox>
             </>
           )}
         </StModalBox>
@@ -87,11 +99,86 @@ const StOverlay = styled.div`
 `;
 
 const StModalBox = styled.div`
-  border: 2px solid black;
-  width: 300px;
-  height: 100px;
+  width: 30rem;
+  height: 20rem;
+  border-radius: 12px;
+
   background: white;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+`;
+const StModalClose = styled.div`
+  display: flex;
+  justify-content: end;
+
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const StModalText = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  flex: 1;
+`;
+
+// 수정 클릭
+const StInput = styled.input`
+  font-weight: bold;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 20px 0;
+`;
+
+const StTextarea = styled.textarea`
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 8rem;
+  resize: none;
+`;
+
+// 수정 미클릭
+const StModalTitle = styled.h2`
+  font-weight: bold;
+  font-size: 1.3rem;
+`;
+
+const StModalContent = styled.p`
+  padding: 1rem 0;
+  margin-top: 30px;
+`;
+
+// hr
+const StModalHr = styled.div`
+  height: 1px;
+  box-shadow: 0px 20px 0px rgb(148, 148, 148);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 20px;
+`;
+
+// 버튼
+const StModalButtonBox = styled.div`
+  display: flex;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  gap: 4px;
+`;
+
+const StModalButton = styled.button`
+  color: white;
+  cursor: pointer;
+  background-color: ${(props) => (props.$buttonColor ? '#4A90E2 ' : '#6C757D ')};
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  &:hover {
+    background-color: ${(props) => (props.$buttonColor ? '#357ABD ' : '#5a6268  ')};
+  }
 `;
