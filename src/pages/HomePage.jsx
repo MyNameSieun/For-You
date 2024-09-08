@@ -17,10 +17,11 @@ export default HomePage;
 
 const StHomeLayout = styled.div`
   display: flex;
-  height: 80vh;
+  height: 90vh;
 `;
 
 const StAddTabsBox = styled.div`
+  height: 90vh;
   width: 30%;
   background-color: #ffffff;
   padding: 20px;

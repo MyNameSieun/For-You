@@ -1,4 +1,3 @@
-import { logout } from 'api/auth';
 import { useAuth } from 'context/AuthContext';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -26,9 +25,12 @@ const Navbar = () => {
         <StNavItem to="/">For You</StNavItem>
         <div>
           {isSignIn ? (
-            <>
+            <StNavRight>
+              <StNavItem to="my-page" $margin>
+                내 프로필
+              </StNavItem>
               <StLogout onClick={hanldeLogout}>로그아웃</StLogout>
-            </>
+            </StNavRight>
           ) : (
             <>
               <StNavItem to="sign-in" $margin>
@@ -63,4 +65,8 @@ const StNavItem = styled(NavLink)`
 `;
 const StLogout = styled.div`
   cursor: pointer;
+`;
+
+const StNavRight = styled.div`
+  display: flex;
 `;

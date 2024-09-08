@@ -32,7 +32,16 @@ const SigninPage = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="id">아이디</label>
-          <input id="id" type="text" value={id} onChange={(e) => setId(e.target.value)} required />
+          <input
+            id="id"
+            type="text"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="아이디를 입력해주세요. (4~10글자)"
+            minLength={4}
+            maxLength={10}
+            required
+          />
         </div>
         <div>
           <label htmlFor="password">비밀번호</label>
@@ -41,6 +50,9 @@ const SigninPage = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="비밀번호를 입력해주세요. (4~15글자)"
+            minLength={4}
+            maxLength={15}
             required
           />
         </div>

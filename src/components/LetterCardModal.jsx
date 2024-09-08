@@ -1,4 +1,5 @@
 import { deleteLetter, updateLetter } from 'api/letters';
+import { useAuth } from 'context/AuthContext';
 import { useModal } from 'context/ModalContext';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 export const LetterCardModal = ({ letter, newLetterCardList }) => {
   const { closeModal } = useModal();
   const [editMode, setEditMode] = useState(null);
+  const { user } = useAuth();
 
   // 편지 삭제
   const handleDeleteButton = async () => {
@@ -52,6 +54,7 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
           {editMode ? (
             <>
               <StModalText>
+                <img />
                 <StInput value={editMode.title} onChange={(e) => setEditMode({ ...editMode, title: e.target.value })} />
                 <StTextarea
                   value={editMode.content}
@@ -72,12 +75,17 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
                 <StModalHr />
                 <StModalContent>{letter.content}</StModalContent>
               </StModalText>
+              <p>작성자: {letter.nickname}</p>
               <p>{letter.createdAt}</p>
               <StModalButtonBox>
-                <StModalButton onClick={handleDeleteButton} $buttonColor>
-                  삭제
-                </StModalButton>
-                <StModalButton onClick={() => handleEditMode(letter)}>수정</StModalButton>
+                {user && user.id === letter.userId && (
+                  <>
+                    <StModalButton onClick={handleDeleteButton} $buttonColor>
+                      삭제
+                    </StModalButton>
+                    <StModalButton onClick={() => handleEditMode(letter)}>수정</StModalButton>
+                  </>
+                )}
               </StModalButtonBox>
             </>
           )}

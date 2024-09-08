@@ -6,16 +6,22 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const isSignIn = !!user; // 로그인 상태 확인
+  const isSignIn = !!user;
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const response = await getUser();
-        setUser(response.data.member);
-      } catch (error) {
-        setUser(null); // 인증 실패 시 사용자 정보 초기화
-      } finally {
+      // 토큰이 있는 경우에만 사용자 정보를 가져오도록 설정
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        try {
+          const response = await getUser();
+          setUser(response.data);
+        } catch (error) {
+          setUser(null);
+        } finally {
+          setLoading(false);
+        }
+      } else {
         setLoading(false);
       }
     };

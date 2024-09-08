@@ -1,4 +1,5 @@
 import { createLetter } from 'api/letters';
+import { useAuth } from 'context/AuthContext';
 import { useSelected } from 'context/SelectedContext';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -9,6 +10,7 @@ const AddForm = ({ newLetterCardList }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { selected } = useSelected();
+  const { user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +21,9 @@ const AddForm = ({ newLetterCardList }) => {
       title,
       avator: null,
       writedTo: selected,
-      createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss')
+      createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      nickname: user.nickname,
+      userId: user.id
     };
 
     try {
@@ -40,6 +44,7 @@ const AddForm = ({ newLetterCardList }) => {
       <StAddBox>
         <form onSubmit={handleSubmit}>
           <div>
+            <StAddNickname>닉네임: {user.nickname}</StAddNickname>
             <div>
               <label htmlFor="title">제목: </label>
             </div>
@@ -83,6 +88,10 @@ const StAddBox = styled.div`
     width: 100%;
     height: 10em;
   }
+`;
+
+const StAddNickname = styled.div`
+  margin-bottom: 1rem;
 `;
 
 const StAddContentBox = styled.div`

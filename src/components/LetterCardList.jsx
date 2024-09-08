@@ -36,7 +36,7 @@ export default LetterCradList;
 const StLetterCradContainer = styled.div``;
 
 const StLetterCradList = styled.ul`
-  max-height: 320px;
+  max-height: 340px;
   overflow-y: auto;
 `;
 

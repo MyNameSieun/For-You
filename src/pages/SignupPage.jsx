@@ -31,7 +31,15 @@ const SignupPage = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="id">아이디</label>
-          <input id="id" type="text" value={id} onChange={(e) => setId(e.target.value)} required />
+          <input
+            id="id"
+            type="text"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            minLength={4}
+            maxLength={10}
+            required
+          />
         </div>
         <div>
           <label htmlFor="password">비밀번호</label>
@@ -40,12 +48,22 @@ const SignupPage = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            minLength={4}
+            maxLength={15}
             required
           />
         </div>
         <div>
           <label htmlFor="nickname">닉네임</label>
-          <input id="nickname" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} required />
+          <input
+            id="nickname"
+            type="text"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            minLength={1}
+            maxLength={10}
+            required
+          />
         </div>
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <button type="submit">회원가입</button>

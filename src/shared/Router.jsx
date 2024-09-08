@@ -9,9 +9,7 @@ import ProtectedRoute from './ProtectedRoute';
 
 const Router = () => {
   // 공통 라우트 설정
-  const commonRoutes = [
-    { path: '/', element: <HomePage /> } // 모든 사용자에게 기본 페이지로 제공
-  ];
+  const commonRoutes = [];
 
   // 비인증 사용자 전용 라우터 설정
   const notAuthenticatedRoutes = [
@@ -23,7 +21,11 @@ const Router = () => {
   const authenticatedRoutes = [
     {
       element: <ProtectedRoute />, // 보호된 라우트 적용
-      children: [{ path: '/my-page', element: <MyPage /> }]
+
+      children: [
+        { path: '/', element: <HomePage /> },
+        { path: '/my-page', element: <MyPage /> }
+      ]
     }
   ];
 
