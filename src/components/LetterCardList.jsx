@@ -4,10 +4,12 @@ import { useModal } from 'context/ModalContext';
 import { LetterCardModal } from './LetterCardModal';
 import { useSelected } from 'context/SelectedContext';
 import defaultUser from 'assets/images/defaultUser.png';
+import { useAuth } from 'context/AuthContext';
 
 const LetterCradList = ({ newLetterCardList, letters }) => {
   const { selected } = useSelected();
   const { isOpen, openModal } = useModal();
+  const { user } = useAuth();
 
   return (
     <StLetterCradContainer>
@@ -18,9 +20,9 @@ const LetterCradList = ({ newLetterCardList, letters }) => {
             .map((letter) => (
               <StLetterCradItem key={letter.id} onClick={() => openModal(letter.id)}>
                 <StLetterCardAvatorFigure>
-                  <img src={null ?? defaultUser} alt="아바타이미지" />
+                  <img src={user.avatar ?? defaultUser} alt="아바타이미지" />
                 </StLetterCardAvatorFigure>
-
+                {console.log(user)}
                 <StLetterText>
                   <h2>{letter.title}</h2>
                   <h3>{letter.content}</h3>

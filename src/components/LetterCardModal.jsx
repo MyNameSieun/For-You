@@ -72,7 +72,7 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
             <>
               <StModalTop>
                 <StModalAvatorFigure>
-                  <img src={null ?? defaultUser} alt="아바타이미지" />
+                  <img src={user.avatar ?? defaultUser} alt="아바타이미지" />
                 </StModalAvatorFigure>
                 <StModalTitle>{letter.title}</StModalTitle>
               </StModalTop>
