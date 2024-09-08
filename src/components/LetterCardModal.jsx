@@ -3,6 +3,7 @@ import { useAuth } from 'context/AuthContext';
 import { useModal } from 'context/ModalContext';
 import { useState } from 'react';
 import styled from 'styled-components';
+import defaultUser from 'assets/images/defaultUser.png';
 
 export const LetterCardModal = ({ letter, newLetterCardList }) => {
   const { closeModal } = useModal();
@@ -54,7 +55,6 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
           {editMode ? (
             <>
               <StModalText>
-                <img />
                 <StInput value={editMode.title} onChange={(e) => setEditMode({ ...editMode, title: e.target.value })} />
                 <StTextarea
                   value={editMode.content}
@@ -70,13 +70,20 @@ export const LetterCardModal = ({ letter, newLetterCardList }) => {
             </>
           ) : (
             <>
-              <StModalText>
+              <StModalTop>
+                <StModalAvatorFigure>
+                  <img src={null ?? defaultUser} alt="아바타이미지" />
+                </StModalAvatorFigure>
                 <StModalTitle>{letter.title}</StModalTitle>
-                <StModalHr />
-                <StModalContent>{letter.content}</StModalContent>
+              </StModalTop>
+
+              <StModalHr />
+              <StModalContent>{letter.content}</StModalContent>
+              <StModalText>
+                <p>작성자: {letter.nickname}</p>
+                <p>{letter.createdAt}</p>
               </StModalText>
-              <p>작성자: {letter.nickname}</p>
-              <p>{letter.createdAt}</p>
+
               <StModalButtonBox>
                 {user && user.id === letter.userId && (
                   <>
@@ -107,6 +114,9 @@ const StOverlay = styled.div`
 `;
 
 const StModalBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 30rem;
   height: 20rem;
   border-radius: 12px;
@@ -125,11 +135,18 @@ const StModalClose = styled.div`
   cursor: pointer;
 `;
 
+const StModalTop = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+`;
+
 const StModalText = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80%;
-  flex: 1;
+  position: absolute;
+  bottom: 24px;
+  color: #5e5e5e;
 `;
 
 // 수정 클릭
@@ -167,7 +184,8 @@ const StModalHr = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  margin: 20px;
+  top: 6rem;
+  margin: 0 1rem;
 `;
 
 // 버튼
@@ -188,5 +206,21 @@ const StModalButton = styled.button`
   padding: 10px 20px;
   &:hover {
     background-color: ${(props) => (props.$buttonColor ? '#357ABD ' : '#5a6268  ')};
+  }
+`;
+
+// 이미지
+
+const StModalAvatorFigure = styled.figure`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 `;

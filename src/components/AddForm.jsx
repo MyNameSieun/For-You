@@ -48,11 +48,17 @@ const AddForm = ({ newLetterCardList }) => {
             <div>
               <label htmlFor="title">제목: </label>
             </div>
-            <input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <input id="title" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={20} required />
           </div>
           <StAddContentBox>
             <label htmlFor="content">내용: </label>
-            <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} required />
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              maxLength={200}
+              required
+            />
           </StAddContentBox>
           <StAddButton>
             <button type="submit">편지 등록</button>

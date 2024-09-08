@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useModal } from 'context/ModalContext';
 import { LetterCardModal } from './LetterCardModal';
 import { useSelected } from 'context/SelectedContext';
+import defaultUser from 'assets/images/defaultUser.png';
 
 const LetterCradList = ({ newLetterCardList, letters }) => {
   const { selected } = useSelected();
@@ -16,6 +17,10 @@ const LetterCradList = ({ newLetterCardList, letters }) => {
             .filter((letter) => letter.writedTo === selected)
             .map((letter) => (
               <StLetterCradItem key={letter.id} onClick={() => openModal(letter.id)}>
+                <StLetterCardAvatorFigure>
+                  <img src={null ?? defaultUser} alt="아바타이미지" />
+                </StLetterCardAvatorFigure>
+
                 <StLetterText>
                   <h2>{letter.title}</h2>
                   <h3>{letter.content}</h3>
@@ -41,14 +46,31 @@ const StLetterCradList = styled.ul`
 `;
 
 const StLetterCradItem = styled.li`
+  display: flex;
   padding: 1rem 0;
   cursor: pointer;
   margin-right: 10px;
 `;
 
+const StLetterCardAvatorFigure = styled.figure`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
+
 const StLetterText = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
+  margin-left: 1rem;
   display: -webkit-box; /* Flexbox를 사용하여 자식 요소를 정렬 */
   -webkit-box-orient: vertical; /* 수직 방향으로 정렬 */
   -webkit-line-clamp: 3; /* 표시할 줄 수 설정 */

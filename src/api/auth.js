@@ -68,7 +68,7 @@ export const getUser = async (data) => {
   "success": true
 }
 */
-export const newProfile = async (data) => {
+export const editProfile = async (data) => {
   const formData = new FormData();
   formData.append('avatar', data.avatar);
   formData.append('nickname', data.nickname);
